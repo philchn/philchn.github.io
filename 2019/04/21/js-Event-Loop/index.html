@@ -98,20 +98,27 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="phil&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="js是单线程，那么意味着，当先我们执行一个任务，什么事都干不了，只能等待他执行完。 这时设计者意识到，只是主线程完全可以不考虑IO设备，挂起处于等待中的任务，先运行排在后面的任务，等IO设备返回了结果，再回头把挂起的设备执行完。 网上找到一张很详细的图:  执行栈当执行某个函数、点击事件，Ajax完成等事件发生时，只要指定过回调函数，这些事件发生时就会进入执行栈队列中，等待主线程读取，遵循先进先出">
+<meta name="keywords" content="event loop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Event Loop">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/js-Event-Loop/index.html">
 <meta property="og:site_name" content="phil&#39;s blog">
+<meta property="og:description" content="js是单线程，那么意味着，当先我们执行一个任务，什么事都干不了，只能等待他执行完。 这时设计者意识到，只是主线程完全可以不考虑IO设备，挂起处于等待中的任务，先运行排在后面的任务，等IO设备返回了结果，再回头把挂起的设备执行完。 网上找到一张很详细的图:  执行栈当执行某个函数、点击事件，Ajax完成等事件发生时，只要指定过回调函数，这些事件发生时就会进入执行栈队列中，等待主线程读取，遵循先进先出">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/04/21/js-Event-Loop/eventLoop.png">
+<meta property="og:updated_time" content="2019-04-21T14:04:00.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="phil&#39;s blog">
+<meta name="twitter:title" content="JS Event Loop">
+<meta name="twitter:description" content="js是单线程，那么意味着，当先我们执行一个任务，什么事都干不了，只能等待他执行完。 这时设计者意识到，只是主线程完全可以不考虑IO设备，挂起处于等待中的任务，先运行排在后面的任务，等IO设备返回了结果，再回头把挂起的设备执行完。 网上找到一张很详细的图:  执行栈当执行某个函数、点击事件，Ajax完成等事件发生时，只要指定过回调函数，这些事件发生时就会进入执行栈队列中，等待主线程读取，遵循先进先出">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/21/js-Event-Loop/eventLoop.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/21/js-Event-Loop/">
 
 
 
@@ -121,7 +128,7 @@
   };
 </script>
 
-  <title>phil's blog</title>
+  <title>JS Event Loop | phil's blog</title>
   
 
 
@@ -169,8 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -208,7 +214,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -321,9 +327,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -355,10 +361,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/21/js-Event-Loop/" class="post-title-link" itemprop="url">JS Event Loop</a>
+          <h1 class="post-title" itemprop="name headline">JS Event Loop
+
               
             
           </h1>
@@ -464,24 +468,48 @@
       
 
       
-        
-          
-            <p>
-              js是单线程，那么意味着，当先我们执行一个任务，什么事都干不了，只能等待他执行完。 这时设计者意识到，只是主线程完全可以不考虑IO设备，挂起处于等待中的任务，先运行排在后面的任务，等IO设备返回了结果，再回头把挂起的设备执行完。
-网上找到一张很详细的图: 
-执行栈当执行某个函数、点击事件，Ajax完成等事件发生时，只要
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/21/js-Event-Loop/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <p>js是单线程，那么意味着，当先我们执行一个任务，什么事都干不了，只能等待他执行完。 这时设计者意识到，只是主线程完全可以不考虑IO设备，挂起处于等待中的任务，先运行排在后面的任务，等IO设备返回了结果，再回头把挂起的设备执行完。</p>
+<p>网上找到一张很详细的图:<br><img src="/2019/04/21/js-Event-Loop/eventLoop.png" alt="eventLoop"> </p>
+<h2 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h2><p>当执行某个函数、点击事件，Ajax完成等事件发生时，只要指定过回调函数，这些事件发生时就会进入执行栈队列中，等待主线程读取，遵循先进先出原则。</p>
+<h2 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h2><p>主线程循环：主线程会不停的从执行栈中读取事件，会执行完所有栈中的同步代码。</p>
+<p>当遇到一个异步事件后，并不会一直等待异步事件返回结果，而是会将这个事件挂在与执行栈不同的队列中，我们称之为任务队列(Task Queue)。</p>
+<p>主线程将执行栈中所有的代码执行完之后，主线程查看任务队列是否有任务。如果有，那么主线程会依次执行那些任务队列中的回调函数。</p>
+<h2 id="宏任务-amp-微任务"><a href="#宏任务-amp-微任务" class="headerlink" title="宏任务&amp;微任务"></a>宏任务&amp;微任务</h2><p>任务分为两种： 同步任务 和 异步任务</p>
+<p>异步任务分为 宏任务（macrotask） 与 微任务 (microtask)，不同的API注册的任务会依次进入自身对应的队列中，然后等待 Event Loop 将它们依次压入执行栈中执行。</p>
+<p><strong> 宏任务(macrotask)：</strong></p>
+<ul>
+<li>script(全局任务)</li>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>I/O</li>
+<li>UI rendering</li>
+</ul>
+<p><strong> 微任务(microtask)：</strong></p>
+<ul>
+<li>Promise的then或catch</li>
+<li>Object.observer</li>
+<li>MutationObserver</li>
+</ul>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><pre><code>setTimeout(()=&gt;{
+console.log(&apos;A&apos;);
+},0);
+var obj={
+    func:function () {
+        setTimeout(function () {
+            console.log(&apos;B&apos;)
+        },0);
+        return new Promise(function (resolve) {
+            console.log(&apos;C&apos;);
+            resolve();
+        })
+    }
+};
+obj.func().then(function () {
+    console.log(&apos;D&apos;)
+});
+console.log(&apos;E&apos;);
+</code></pre><p>1、首先 setTimeout A 被加入到事件队列中  ==&gt;  此时macrotasks中有[‘A’]；<br>2、obj.func()执行时，setTimeout B 被加入到事件队列中  ==&gt; 此时macrotasks中有[‘A’，‘B’]；<br>3、接着return一个Promise对象，Promise 新建后立即执行 执行console.log(‘C’); 控制台首次打印‘C’;<br>4、然后，then方法指定的回调函数，被加入到microtasks队列，将在当前脚本所有同步任务执行完才会执行。 ==&gt;  此时microtasks中有[‘D’]；<br>5、然后继续执行当前脚本的同步任务，故控制台第二次输出‘E’；<br>6、此时所有同步任务执行完毕，如上所述先检查microtasks队列，完成其中所有任务，故控制台第三次输出‘D’；<br>7、最后再执行macrotask的任务，并且按照入队列的时间顺序，控制台第四次输出‘A’，控制台第五次输出‘B’。<br>所以该例子得出答案为：C，E，D，A，B.</p>
+
       
     </div>
 
@@ -502,407 +530,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/Git常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phil">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/user.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phil's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/31/Git常用命令/" class="post-title-link" itemprop="url">Git常用命令</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-31 20:40:29" itemprop="dateCreated datePublished" datetime="2019-03-31T20:40:29+08:00">2019-03-31</time>
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/event-loop/" rel="tag"># event loop</a>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">1.6k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-            <p>
-              Git流程在多人开发过程中，通常会建立一个develop分支，然后每个人去建立各自的单独分支，每个人在自己的分支上进行开发，然后合并到develop分支（如果是独自开发，觉得直接在develop进行开发也可以）。
-常用命令正常开发（1）获取代码git clone git地址
-（2）创建本地分支在本地创建develop分
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/31/Git常用命令/#more" rel="contents">
-                Read more &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/Git常用命令/" rel="next" title="Git常用命令">
+                <i class="fa fa-chevron-left"></i> Git常用命令
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/Hello-Blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phil">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/user.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phil's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/24/Hello-Blog/" class="post-title-link" itemprop="url">Hello Blog</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-24 19:24:22" itemprop="dateCreated datePublished" datetime="2019-03-24T19:24:22+08:00">2019-03-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随记/" itemprop="url" rel="index"><span itemprop="name">随记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">695</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>
-              很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。
-开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/24/Hello-Blog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -912,14 +569,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -939,8 +597,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1009,6 +676,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行栈"><span class="nav-number">1.</span> <span class="nav-text">执行栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务队列"><span class="nav-number">2.</span> <span class="nav-text">任务队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏任务-amp-微任务"><span class="nav-number">3.</span> <span class="nav-text">宏任务&amp;微任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子："><span class="nav-number">4.</span> <span class="nav-text">例子：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1160,6 +844,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
 
   
 
@@ -1175,6 +863,8 @@
 
   
 
+
+  
 
 
   
