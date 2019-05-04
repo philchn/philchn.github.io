@@ -98,25 +98,27 @@
 
 
 
-  <meta name="description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="闭包的理解关于闭包的概念，红宝书上给出的是：“闭包是指有权访问另一个函数作用域的变量的函数”。在另外一本书上看到了这样的一段描述：“闭包允许函数访问并操作函数外部的变量。只要变量或函数存在于声明函数时的作用域内，闭包即可使函数能够访问这些变量或函数”。这可能看起来很直观，但是所声明的函数可以在声明之后的任何时候被调用，甚至当该函数声明的作用域消失之后仍可以调用。 直接通过代码感觉更容易理解概念 v">
+<meta name="keywords" content="闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Blog">
-<meta property="og:url" content="http://yoursite.com/2019/03/24/Hello-Blog/index.html">
+<meta property="og:title" content="闭包(一)">
+<meta property="og:url" content="http://yoursite.com/2019/05/04/闭包/index.html">
 <meta property="og:site_name" content="phil&#39;s blog">
-<meta property="og:description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
+<meta property="og:description" content="闭包的理解关于闭包的概念，红宝书上给出的是：“闭包是指有权访问另一个函数作用域的变量的函数”。在另外一本书上看到了这样的一段描述：“闭包允许函数访问并操作函数外部的变量。只要变量或函数存在于声明函数时的作用域内，闭包即可使函数能够访问这些变量或函数”。这可能看起来很直观，但是所声明的函数可以在声明之后的任何时候被调用，甚至当该函数声明的作用域消失之后仍可以调用。 直接通过代码感觉更容易理解概念 v">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-03-24T13:01:27.471Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/04/闭包/闭包.png">
+<meta property="og:updated_time" content="2019-05-04T12:57:18.248Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Blog">
-<meta name="twitter:description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
+<meta name="twitter:title" content="闭包(一)">
+<meta name="twitter:description" content="闭包的理解关于闭包的概念，红宝书上给出的是：“闭包是指有权访问另一个函数作用域的变量的函数”。在另外一本书上看到了这样的一段描述：“闭包允许函数访问并操作函数外部的变量。只要变量或函数存在于声明函数时的作用域内，闭包即可使函数能够访问这些变量或函数”。这可能看起来很直观，但是所声明的函数可以在声明之后的任何时候被调用，甚至当该函数声明的作用域消失之后仍可以调用。 直接通过代码感觉更容易理解概念 v">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/04/闭包/闭包.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/24/Hello-Blog/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/04/闭包/">
 
 
 
@@ -126,7 +128,7 @@
   };
 </script>
 
-  <title>Hello Blog | phil's blog</title>
+  <title>闭包(一) | phil's blog</title>
   
 
 
@@ -342,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/Hello-Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phil">
@@ -359,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello Blog
+          <h1 class="post-title" itemprop="name headline">闭包(一)
 
               
             
@@ -385,7 +387,7 @@
                 
               
 
-              <time title="Created: 2019-03-24 19:24:22" itemprop="dateCreated datePublished" datetime="2019-03-24T19:24:22+08:00">2019-03-24</time>
+              <time title="Created: 2019-05-04 13:37:16" itemprop="dateCreated datePublished" datetime="2019-05-04T13:37:16+08:00">2019-05-04</time>
             
 
             
@@ -403,7 +405,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随记/" itemprop="url" rel="index"><span itemprop="name">随记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
 
                 
                 
@@ -432,7 +434,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">695</span>
+                <span title="Symbols count in article">2.3k</span>
               
 
               
@@ -446,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">1 mins.</span>
+                <span title="Reading time">2 mins.</span>
               
             </div>
           
@@ -466,16 +468,69 @@
       
 
       
-        <p>很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。</p>
-<p>开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。</p>
-<p>框架直接用了学弟推荐的hexo，在服务器的选择上，因为以前买过一个云服务器，当时新用户优惠，还是很便宜的，但是用了之后才发现，卡的让人怀疑人生，还时不时的就挂掉了（记忆犹新的一次是要做一个组内技术分享，提前两天把一个demo放上去了，结果第二天去访问的时候，挂掉了。。。当时内心真是万马奔腾呀，重新搞好之后，分享的那天一天看了好几遍，生怕它再gg了…），后来要续费的时候，看了眼价格，弱弱的说了句：我要你有何用，打扰了！之后就没再买过了，所以这次毫不犹豫的选了Github。域名的话，以前买过几个，后来也是感觉不怎么用到，.com的续费还贼贵，就不要了，于是又重新买了一个最便宜的（是什么大家都懂的。。。）</p>
-<p>把域名挂到Github上把项目跑起来之后，一看，默认的主题有点辣眼睛呀，于是就开始捣鼓起主题来，有不少功能还有待于完善，就等以后再说吧。</p>
-<p>第一个开题贴，附上几个命令吧，万一以后长时间不更，把命令忘了呢，哈哈哈。。。</p>
-<p><code>hexo new “xxx”</code>——新建一篇文章</p>
-<p><code>hexo server</code>——启动本地服务器</p>
-<p><code>hexo clean</code>——清楚缓存文件</p>
-<p><code>hexo generate</code>——生成静态文件</p>
-<p><code>hexo deploy</code>——部署</p>
+        <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>关于闭包的概念，红宝书上给出的是：“闭包是指有权访问另一个函数作用域的变量的函数”。在另外一本书上看到了这样的一段描述：“闭包允许函数访问并操作函数外部的变量。只要变量或函数存在于声明函数时的作用域内，闭包即可使函数能够访问这些变量或函数”。<br>这可能看起来很直观，但是所声明的函数可以在声明之后的任何时候被调用，甚至当该函数声明的作用域消失之后仍可以调用。</p>
+<p>直接通过代码感觉更容易理解概念</p>
+<pre><code>var philValue = &quot;phil&quot;;
+function philFunction () {
+    console.log(philValue);
+}
+philFunction();
+</code></pre><p>这是一段再普通不过的代码，可能我们都写过类似的不知道多少次，但是却没意识到其实这就是一个闭包。函数philFunction、可以被函数philFunction访问并操作函数外部的变量philValue，完全符合闭包的概念，只不过在这里是在全局作用域下，该作用域（实际上就是一个闭包）从未消失（只要应用处于运行状态）。</p>
+<p>接下来是一个闭包更明显的例子</p>
+<pre><code>var outerValue = &quot;phil&quot;;
+var test;
+
+function outerFun () {
+    var innerValue = &quot;abc&quot;;
+    function innerFun () {
+        console.log(&apos;log1:&apos;,outerValue);
+        console.log(&apos;log2:&apos;,innerValue);
+    }
+    test = innerFun;
+}
+
+outerFun();
+test();
+</code></pre><p>这个例子中，按理说，调用内部函数时，函数的作用域已经不存在了，所以打印应该是log1:phil,log2:undefind。但是真正的运行结果却是log1:phil,log2:abc。</p>
+<p>其实当在外部函数中声明内部函数的时候，还创建了一个闭包，这个闭包不光包含了函数的声明，还包含了函数声明时该作用域中的所有变量。在执行内部函数的时候，尽管声明时的作用域已经消失了，但是通过闭包仍可以访问到原始作用域。如图<br><img src="/2019/05/04/闭包/闭包.png" alt="闭包"><br>就像一个保护气泡一样，只要内部函数存在，内部函数的闭包就一直保存着该函数的作用域中的变量。</p>
+<p>这就是闭包。</p>
+<h2 id="闭包的使用"><a href="#闭包的使用" class="headerlink" title="闭包的使用"></a>闭包的使用</h2><h4 id="封装私有变量"><a href="#封装私有变量" class="headerlink" title="封装私有变量"></a>封装私有变量</h4><p>原生的js是不支持私有变量的，通过闭包，我们可以实现类似于私有变量。</p>
+<pre><code>function Phil () {
+    var counts = 0;
+    this.getCounts = function () {
+        return counts;
+    };
+    this.count = function () {
+        counts++;
+    }
+}
+
+var phil1 = new Phil();
+phil1.count();
+console.log(phil1.counts);  //undefind
+console.log(phil1.getCounts());  //1
+
+var phil2 = new Phil();
+console.log(phil2.getCounts()); //0
+</code></pre><p>在这个例子中，我们可以通过闭包内部的方法获取私有变量的值，但是不能直接访问私有变量，这样可以阻止对变量不可控的修改。</p>
+<h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><pre><code>&lt;div id=&quot;box1&quot;&gt;box one&lt;/div&gt;
+&lt;script&gt;
+    function animimateInit (elementId) {
+        var element = document.getElementById(elementId);
+        var tick = 0;
+        var time = setInterval(function(){
+            if(tick&lt;100){
+                element.style.left = elem.style.top = tick + &quot;px&quot;;
+                tick++;
+            }else{
+                clearInterval(time);
+            }
+        },100)
+    }
+    animimateInit(&quot;box1&quot;);
+&lt;/script&gt;
+</code></pre><p>该例是闭包在回调函数中的应用，如果我们把animimateInit函数中的element、tick、time变量放到全局作用域下，函数也可以正常运行，但是会污染全局作用域，例如我们现在由多个需要动画效果的元素（box1，box2…），这时要想这些元素动画都正常，就要分别设置多组三个不同的变量，否则就会差生冲突。<br>在闭包的情况下，只需要进行多次函数调用，每一次的调用都会产生属于自己的“气泡”中的私有变量，不需要定义多组变量，也不会发生冲突。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们平时对于闭包这个字眼看到的并不多，但是在不知不觉中用到的次数却不少，通过闭包，可以避免很多问题，使我们的代码更加简洁直观，如果没有闭包，一次性同时做许多事情，例如事件绑定、动画甚至是服务端请求等，都会变得比较麻烦。</p>
 
       
     </div>
@@ -499,7 +554,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/闭包/" rel="tag"># 闭包</a>
           
         </div>
       
@@ -512,15 +567,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/21/js-Event-Loop/" rel="next" title="JS Event Loop">
+                <i class="fa fa-chevron-left"></i> JS Event Loop
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/31/Git常用命令/" rel="prev" title="Git常用命令">
-                Git常用命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,8 +619,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -634,6 +698,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的理解"><span class="nav-number">1.</span> <span class="nav-text">闭包的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的使用"><span class="nav-number">2.</span> <span class="nav-text">闭包的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装私有变量"><span class="nav-number">2.0.1.</span> <span class="nav-text">封装私有变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">2.0.2.</span> <span class="nav-text">回调函数</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
