@@ -98,25 +98,29 @@
 
 
 
-  <meta name="description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
+<meta name="keywords" content="执行上下文&amp;词法环境">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Blog">
-<meta property="og:url" content="http://yoursite.com/2019/03/24/Hello-Blog/index.html">
+<meta property="og:title" content="执行上下文和词法环境">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/index.html">
 <meta property="og:site_name" content="phil&#39;s blog">
-<meta property="og:description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
+<meta property="og:description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-03-24T13:01:27.471Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/执行上下文.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/callStack.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/cifa.png">
+<meta property="og:updated_time" content="2019-05-19T14:38:38.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Blog">
-<meta name="twitter:description" content="很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。 开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。 框架直接用了学弟推荐的hexo，在服">
+<meta name="twitter:title" content="执行上下文和词法环境">
+<meta name="twitter:description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/执行上下文.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/24/Hello-Blog/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/19/执行上下文和词法环境/">
 
 
 
@@ -126,7 +130,7 @@
   };
 </script>
 
-  <title>Hello Blog | phil's blog</title>
+  <title>执行上下文和词法环境 | phil's blog</title>
   
 
 
@@ -342,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/Hello-Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/执行上下文和词法环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phil">
@@ -359,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello Blog
+          <h1 class="post-title" itemprop="name headline">执行上下文和词法环境
 
               
             
@@ -385,7 +389,7 @@
                 
               
 
-              <time title="Created: 2019-03-24 19:24:22" itemprop="dateCreated datePublished" datetime="2019-03-24T19:24:22+08:00">2019-03-24</time>
+              <time title="Created: 2019-05-19 19:51:19" itemprop="dateCreated datePublished" datetime="2019-05-19T19:51:19+08:00">2019-05-19</time>
             
 
             
@@ -403,7 +407,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随记/" itemprop="url" rel="index"><span itemprop="name">随记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
 
                 
                 
@@ -432,7 +436,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">695</span>
+                <span title="Symbols count in article">1.4k</span>
               
 
               
@@ -466,16 +470,45 @@
       
 
       
-        <p>很早以前，就想搞个博客玩玩，但是一直也没有行动起来，也算是为了希望能稍稍提升一下写文档的能力吧，最近终于想搞这个了。</p>
-<p>开始的时候，是想着要不注册一个网上的博客得了，后来因为不喜欢大多数博客上的广告和一些局限性，再加上无意间听学弟说有个不错的博客框架用起来挺方便，于是就选择了自己试着搞一个，反正也不是为了去挣积分或者分享什么，只是为了记录一下偶尔自己想写的东西。</p>
-<p>框架直接用了学弟推荐的hexo，在服务器的选择上，因为以前买过一个云服务器，当时新用户优惠，还是很便宜的，但是用了之后才发现，卡的让人怀疑人生，还时不时的就挂掉了（记忆犹新的一次是要做一个组内技术分享，提前两天把一个demo放上去了，结果第二天去访问的时候，挂掉了。。。当时内心真是万马奔腾呀，重新搞好之后，分享的那天一天看了好几遍，生怕它再gg了…），后来要续费的时候，看了眼价格，弱弱的说了句：我要你有何用，打扰了！之后就没再买过了，所以这次毫不犹豫的选了Github。域名的话，以前买过几个，后来也是感觉不怎么用到，.com的续费还贼贵，就不要了，于是又重新买了一个最便宜的（是什么大家都懂的。。。）</p>
-<p>把域名挂到Github上把项目跑起来之后，一看，默认的主题有点辣眼睛呀，于是就开始捣鼓起主题来，有不少功能还有待于完善，就等以后再说吧。</p>
-<p>第一个开题贴，附上几个命令吧，万一以后长时间不更，把命令忘了呢，哈哈哈。。。</p>
-<p><code>hexo new “xxx”</code>——新建一篇文章</p>
-<p><code>hexo server</code>——启动本地服务器</p>
-<p><code>hexo clean</code>——清楚缓存文件</p>
-<p><code>hexo generate</code>——生成静态文件</p>
-<p><code>hexo deploy</code>——部署</p>
+        <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。</p>
+<p>我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执行上下文。跟踪的方法是使用执行上下文栈，即调用栈。</p>
+<pre><code>function phil(value){
+    report(value + &quot;phil runing&quot;)
+}
+
+function report(mes){
+    console.log(mes)
+}
+
+phil(&quot;test&quot;)
+</code></pre><p>通过这段简单代码，我们看一下执行上下文的创建过程<br><img src="/2019/05/19/执行上下文和词法环境/执行上下文.png" alt="执行上下文"></p>
+<ol>
+<li>每个js程序只创建一个全局执行上下文，并从全局执行上下文开始执行，当执行全局代码时，全局执行上下文处于活跃状态</li>
+<li>phil函数被调用后，新的函数上下文入栈，全局执行上下文暂停</li>
+<li>report函数被调用后，其上下文入栈，phil上下文暂停</li>
+<li>report函数执行完毕，其函数上下文出栈，phil执行上下文恢复执行</li>
+<li>phil函数执行完成，其函数上下文出栈，全局执行上下文恢复执行</li>
+</ol>
+<p>上面就是执行上下文的执行过程，虽然执行上下文栈是js内部概念，但是通过调试器是可以查看的，如下图为刚刚的代码在chrome开发者工具中的调用栈<br><img src="/2019/05/19/执行上下文和词法环境/callStack.png" alt="callStack"></p>
+<h2 id="词法环境"><a href="#词法环境" class="headerlink" title="词法环境"></a>词法环境</h2><p>词法环境（即作用域）是js引擎内部用来跟踪标识符和特定变量之间的映射关系。</p>
+<p>词法环境主要基于代码嵌套，通过代码嵌套可以实现代码结构的包含关系</p>
+<p>在作用域范围内，每次执行代码时，代码结构都会获得与之关联的词法环境，而我们知道内部代码结构可以访问外部代码结构中定义的变量，外部代码结构不能访问内部代码结构定义的变量，js引擎就是根据词法环境来进行这些变量的跟踪的。</p>
+<p>因为需要能够访问到外部代码结构，所以需要跟踪外部词法变量，如果当前环境中无法找到某一个标识符，就会对外部环境进行查找，一旦找到匹配的变量或者在全局环境中依然没有找到匹配的变量而返回错误，就会停止查找。</p>
+<pre><code>var ninja = &quot;Muneyoshi&quot;
+function skulk(){
+    var action = &quot;skulking&quot;
+    function report(){
+        var intro = &quot;Aha!&quot;
+        console.log(intro)
+        console.log(action)
+        console.log(ninja)
+    }
+    report()
+}
+skulk()
+</code></pre><p><img src="/2019/05/19/执行上下文和词法环境/cifa.png" alt="cifa"></p>
+<p>在这个例子中，图中展示了当函数执行时，各个标识符是如何查找的，执行上下文关联词法环境，词法环境中包含了在上下文中定义的标识符的映射表，例如全局环境中具有ninja和skulk的映射表，skulk环境中具有action和report的映射表，report环境中具有intro的映射表。</p>
+<p>在创建函数的时候，都会创建一个与之相关联的词法环境，并存储在名为[[Environment]]的内部属性上，例如skulk函数保存全局环境的引用，report函数保存skulk环境的引用，这些都是函数被创建时所在的环境。</p>
 
       
     </div>
@@ -499,7 +532,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/执行上下文-词法环境/" rel="tag"># 执行上下文&词法环境</a>
           
         </div>
       
@@ -512,15 +545,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/04/闭包/" rel="next" title="闭包(一)">
+                <i class="fa fa-chevron-left"></i> 闭包(一)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/31/Git常用命令/" rel="prev" title="Git常用命令">
-                Git常用命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,8 +597,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -634,6 +676,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词法环境"><span class="nav-number">2.</span> <span class="nav-text">词法环境</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
