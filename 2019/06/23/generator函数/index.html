@@ -98,29 +98,31 @@
 
 
 
-  <meta name="description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
-<meta name="keywords" content="执行上下文&amp;词法环境">
+  <meta name="description" content="概念Generator函数是ES6提供的一种异步编程解决方案，语法上面看，Generator函数可以理解成一个状态机，封装了多个内部状态，执行一个Generator函数就会返回一个遍历器对象，可以依次遍历Generator函数内部的每一个状态。 特征 function 关键字和函数之间有一个(*),内部使用yield表达式定义不同的内部状态。 调用Generator函数后，函数并不执行，返回的也不">
+<meta name="keywords" content="generator函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="执行上下文和词法环境">
-<meta property="og:url" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/index.html">
+<meta property="og:title" content="generator函数">
+<meta property="og:url" content="http://yoursite.com/2019/06/23/generator函数/index.html">
 <meta property="og:site_name" content="phil&#39;s blog">
-<meta property="og:description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
+<meta property="og:description" content="概念Generator函数是ES6提供的一种异步编程解决方案，语法上面看，Generator函数可以理解成一个状态机，封装了多个内部状态，执行一个Generator函数就会返回一个遍历器对象，可以依次遍历Generator函数内部的每一个状态。 特征 function 关键字和函数之间有一个(*),内部使用yield表达式定义不同的内部状态。 调用Generator函数后，函数并不执行，返回的也不">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/执行上下文.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/callStack.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/cifa.png">
-<meta property="og:updated_time" content="2019-05-19T14:38:38.574Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/23/generator函数/example.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/23/generator函数/example2.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/23/generator函数/example3.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/23/generator函数/example4.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/23/generator函数/example5.png">
+<meta property="og:updated_time" content="2019-06-23T13:43:36.559Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="执行上下文和词法环境">
-<meta name="twitter:description" content="执行上下文在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。 我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/19/执行上下文和词法环境/执行上下文.png">
+<meta name="twitter:title" content="generator函数">
+<meta name="twitter:description" content="概念Generator函数是ES6提供的一种异步编程解决方案，语法上面看，Generator函数可以理解成一个状态机，封装了多个内部状态，执行一个Generator函数就会返回一个遍历器对象，可以依次遍历Generator函数内部的每一个状态。 特征 function 关键字和函数之间有一个(*),内部使用yield表达式定义不同的内部状态。 调用Generator函数后，函数并不执行，返回的也不">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/23/generator函数/example.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/19/执行上下文和词法环境/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/23/generator函数/">
 
 
 
@@ -130,7 +132,7 @@
   };
 </script>
 
-  <title>执行上下文和词法环境 | phil's blog</title>
+  <title>generator函数 | phil's blog</title>
   
 
 
@@ -346,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/执行上下文和词法环境/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/generator函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phil">
@@ -363,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">执行上下文和词法环境
+          <h1 class="post-title" itemprop="name headline">generator函数
 
               
             
@@ -389,7 +391,7 @@
                 
               
 
-              <time title="Created: 2019-05-19 19:51:19" itemprop="dateCreated datePublished" datetime="2019-05-19T19:51:19+08:00">2019-05-19</time>
+              <time title="Created: 2019-06-23 18:07:25" itemprop="dateCreated datePublished" datetime="2019-06-23T18:07:25+08:00">2019-06-23</time>
             
 
             
@@ -436,7 +438,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">1.4k</span>
+                <span title="Symbols count in article">3.6k</span>
               
 
               
@@ -450,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">1 mins.</span>
+                <span title="Reading time">3 mins.</span>
               
             </div>
           
@@ -470,45 +472,115 @@
       
 
       
-        <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>在js中，我们时刻使用函数，通过函数实现各种逻辑处理，函数之间可以实现调用，当函数调用结束时，程序会通过执行上下文回到函数调用的位置。</p>
-<p>我们都知道js是单线程的，在特定的时刻只能执行特定的代码，一旦发生函数调用，当前的执行上下文就必须停止，并创建新的函数执行上下文来执行函数，当函数执行完毕后，将函数执行上下文销毁，并回到发生调用时的执行上下文中。所以需要跟踪正在执行的上下文和正在等待的执行上下文。跟踪的方法是使用执行上下文栈，即调用栈。</p>
-<pre><code>function phil(value){
-    report(value + &quot;phil runing&quot;)
-}
-
-function report(mes){
-    console.log(mes)
-}
-
-phil(&quot;test&quot;)
-</code></pre><p>通过这段简单代码，我们看一下执行上下文的创建过程<br><img src="/2019/05/19/执行上下文和词法环境/执行上下文.png" alt="执行上下文"></p>
-<ol>
-<li>每个js程序只创建一个全局执行上下文，并从全局执行上下文开始执行，当执行全局代码时，全局执行上下文处于活跃状态</li>
-<li>phil函数被调用后，新的函数上下文入栈，全局执行上下文暂停</li>
-<li>report函数被调用后，其上下文入栈，phil上下文暂停</li>
-<li>report函数执行完毕，其函数上下文出栈，phil执行上下文恢复执行</li>
-<li>phil函数执行完成，其函数上下文出栈，全局执行上下文恢复执行</li>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Generator函数是ES6提供的一种异步编程解决方案，语法上面看，Generator函数可以理解成一个状态机，封装了多个内部状态，执行一个Generator函数就会返回一个遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ol>
+<li>function 关键字和函数之间有一个(*),内部使用yield表达式定义不同的内部状态。</li>
+<li>调用Generator函数后，函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象。</li>
 </ol>
-<p>上面就是执行上下文的执行过程，虽然执行上下文栈是js内部概念，但是通过调试器是可以查看的，如下图为刚刚的代码在chrome开发者工具中的调用栈<br><img src="/2019/05/19/执行上下文和词法环境/callStack.png" alt="callStack"></p>
-<h2 id="词法环境"><a href="#词法环境" class="headerlink" title="词法环境"></a>词法环境</h2><p>词法环境（即作用域）是js引擎内部用来跟踪标识符和特定变量之间的映射关系。</p>
-<p>词法环境主要基于代码嵌套，通过代码嵌套可以实现代码结构的包含关系</p>
-<p>在作用域范围内，每次执行代码时，代码结构都会获得与之关联的词法环境，而我们知道内部代码结构可以访问外部代码结构中定义的变量，外部代码结构不能访问内部代码结构定义的变量，js引擎就是根据词法环境来进行这些变量的跟踪的。</p>
-<p>因为需要能够访问到外部代码结构，所以需要跟踪外部词法变量，如果当前环境中无法找到某一个标识符，就会对外部环境进行查找，一旦找到匹配的变量或者在全局环境中依然没有找到匹配的变量而返回错误，就会停止查找。</p>
-<pre><code>var ninja = &quot;Muneyoshi&quot;
-function skulk(){
-    var action = &quot;skulking&quot;
-    function report(){
-        var intro = &quot;Aha!&quot;
-        console.log(intro)
-        console.log(action)
-        console.log(ninja)
-    }
-    report()
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>接下来是一个简单的例子</p>
+<pre><code>function* PhilGenerator (){
+    yield &quot;testA&quot;;
+    yield &quot;testB&quot;;
+    yield &quot;testC&quot;;
 }
-skulk()
-</code></pre><p><img src="/2019/05/19/执行上下文和词法环境/cifa.png" alt="cifa"></p>
-<p>在这个例子中，图中展示了当函数执行时，各个标识符是如何查找的，执行上下文关联词法环境，词法环境中包含了在上下文中定义的标识符的映射表，例如全局环境中具有ninja和skulk的映射表，skulk环境中具有action和report的映射表，report环境中具有intro的映射表。</p>
-<p>在创建函数的时候，都会创建一个与之相关联的词法环境，并存储在名为[[Environment]]的内部属性上，例如skulk函数保存全局环境的引用，report函数保存skulk环境的引用，这些都是函数被创建时所在的环境。</p>
+for(let value of PhilGenerator()){
+    console.log(value);
+}
+</code></pre><p>这个例子的输出结果，如图所示<br><img src="/2019/06/23/generator函数/example.png" alt="example"></p>
+<p>在例子中，并没有return语句，但结果中却得到了输出值。其实，调用generator函数并不会执行这个函数，而是会创建一个迭代器（interator）；</p>
+<h3 id="通过迭代器控制generator（生成器）"><a href="#通过迭代器控制generator（生成器）" class="headerlink" title="通过迭代器控制generator（生成器）"></a>通过迭代器控制generator（生成器）</h3><pre><code>function* PhilGenerator(){
+    yield &quot;testA&quot;;
+    yield &quot;testB&quot;;
+}
+
+const philInterator = PhilGenerator();
+
+const result1 = philInterator.next();
+console.log(result1)
+if(typeof result1 == &quot;object&quot; &amp;&amp; result1.value == &quot;testA&quot; &amp;&amp; !result1.done){
+    console.log(&quot;testA log&quot;)
+}
+
+const result2 = philInterator.next();
+console.log(result2)
+if(typeof result2 == &quot;object&quot; &amp;&amp; result2.value == &quot;testB&quot; &amp;&amp; !result2.done){
+    console.log(&quot;testB log&quot;)
+}
+
+const result3 = philInterator.next();
+console.log(result3)
+if(typeof result3 == &quot;object&quot; &amp;&amp; result2.value == undefined &amp;&amp; result2.done){
+    console.log(&quot;No more log&quot;)
+}
+</code></pre><p>先看一下这个例子的输出结果<br><img src="/2019/06/23/generator函数/example2.png" alt="example2"></p>
+<p>在调用生成器后，就会创建一个迭代器：const philInterator = PhilGenerator();迭代器用于控制生成器的执行。</p>
+<p>迭代器暴露的基本接口是next方法，这个方法可以向生成器请求一个值，从而控制生成器：const result1 = philInterator.next();<br>next调用后，生成器开始执行，当执行到yield关键字时，会生成一个中间结果，然后返回一个新的对象，其中封装了结果值和一个指示完成的指示器。</p>
+<p>每当生成一个值后，生成器会非阻塞的挂起，等待下一次的请求。当再次向生成器请求时const result2 = philInterator.next();挂起状态的生成器从上次离开的位置继续执行，直到再次遇到yield ，再次生成一个值，然后再次进入挂起状态…当第三次执行next，没有可执行的代码了，所以生成器返回一个value值为undefined，done属性为true，表明工作完成。</p>
+<h3 id="对迭代器进行迭代"><a href="#对迭代器进行迭代" class="headerlink" title="对迭代器进行迭代"></a>对迭代器进行迭代</h3><p>通过调用暴露出来的next方法，我们能向生成器请求新值，next方法返回的既有value值，也有一个done属性，用于告知是否执行完成，我们利用这个done属性，可以通过whil循环来进行迭代</p>
+<pre><code>function* PhilGenerator(){
+    yield &quot;testA&quot;;
+    yield &quot;testB&quot;;
+}
+
+const philInterator = PhilGenerator();
+let item;
+while(!(item = philInterator.next()).done){
+    if(item.value !== null){
+        console.log(item.value);
+    }
+}
+</code></pre><p>打印结果为<br><img src="/2019/06/23/generator函数/example3.png" alt="example3"><br>这就是第一个例子中for-of循环的原理</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>下面是一个generator函数的一个用于生产ID的实际应用的例子</p>
+<pre><code>function* IdGenerator(){
+    let id = 0;
+    while(true){
+        yield ++id;
+    }
+}
+
+const idInterator = IdGenerator();
+
+const getId1 = {id:idInterator.next().value};
+const getId2 = {id:idInterator.next().value};
+const getId3 = {id:idInterator.next().value};
+</code></pre><p>通过这个例子可以得到不重复的id，需要生成一个新的id的时候调用一下idInterator即可，如果需要生成另外一组id序列，再重新初始化一个新迭代器即可。</p>
+<h3 id="与生成器交互"><a href="#与生成器交互" class="headerlink" title="与生成器交互"></a>与生成器交互</h3><p>除了我们可以从generator函数中获取多个值，我们还可以向生成器中传值，从而实现双向通信。</p>
+<p>向生成器发送值最简单的方法和其他函数一样，调用函数并传入实参</p>
+<pre><code>function* PhilGenerator(action){
+    const msg = yield (&quot;phil&quot; + action);
+
+    if(msg == &quot;test&quot;){
+        yield (msg + action);
+    }
+}
+
+const philInterator = PhilGenerator(&quot;ma&quot;);
+
+const result1 = philInterator.next();
+console.log(result1);
+
+const result2 = philInterator.next(&quot;test&quot;);
+console.log(result2)
+</code></pre><p>打印结果为<br><img src="/2019/06/23/generator函数/example4.png" alt="example4"><br>在调用PhilGenerator时，传入了ma，第一次打印结果为{value: “philma”, done: false}应该很好理解，但第二次打印的却是{value: “testma”, done: false}，这是因为当test当做next的参数传入时，next的参数会用作整个yield表达式的值，即msg = yield (“phil” + action)中的变量msg最终值变为了test。</p>
+<h3 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h3><p>每个迭代器除了有next方法，还有一个throw方法。</p>
+<pre><code>function* PhilGenerator(){
+    try{
+        yield &quot;phil&quot;;
+        console.log(&quot;success log&quot;)
+    }
+    catch(e){
+        console.log(&quot;error log&quot;,e)
+    }
+}
+
+const PhilInterator = PhilGenerator();
+
+const result1 = PhilInterator.next();
+if(result1.value == &quot;phil&quot;){
+    console.log(&quot;phil success log&quot;)
+}
+const result2 = PhilInterator.throw(&quot;fail msg&quot;);
+</code></pre><p>打印结果为<br><img src="/2019/06/23/generator函数/example5.png" alt="example5"></p>
 
       
     </div>
@@ -532,7 +604,7 @@ skulk()
       
         <div class="post-tags">
           
-            <a href="/tags/执行上下文-词法环境/" rel="tag"># 执行上下文&词法环境</a>
+            <a href="/tags/generator函数/" rel="tag"># generator函数</a>
           
         </div>
       
@@ -545,8 +617,8 @@ skulk()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/04/闭包/" rel="next" title="闭包(一)">
-                <i class="fa fa-chevron-left"></i> 闭包(一)
+              <a href="/2019/05/19/执行上下文和词法环境/" rel="next" title="执行上下文和词法环境">
+                <i class="fa fa-chevron-left"></i> 执行上下文和词法环境
               </a>
             
           </div>
@@ -554,10 +626,6 @@ skulk()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/23/generator函数/" rel="prev" title="generator函数">
-                generator函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -691,7 +759,7 @@ skulk()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词法环境"><span class="nav-number">2.</span> <span class="nav-text">词法环境</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过迭代器控制generator（生成器）"><span class="nav-number">3.1.</span> <span class="nav-text">通过迭代器控制generator（生成器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对迭代器进行迭代"><span class="nav-number">3.2.</span> <span class="nav-text">对迭代器进行迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际应用"><span class="nav-number">3.3.</span> <span class="nav-text">实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与生成器交互"><span class="nav-number">3.4.</span> <span class="nav-text">与生成器交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抛出异常"><span class="nav-number">3.5.</span> <span class="nav-text">抛出异常</span></a></li></ol></li></ol></div>
             
 
           </div>
